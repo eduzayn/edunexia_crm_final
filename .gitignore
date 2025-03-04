@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+vendor/
+.bundle/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+log/
+
+# Build
+tmp/
+public/packs/
+public/assets/
+
+# Docker
+.docker/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db 

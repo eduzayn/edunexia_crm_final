@@ -1,52 +1,24 @@
-version: '3'
+version: '3.8'
 
 services:
-  base: &base
-    image: chatwoot/chatwoot:latest
-    env_file: .env
+  base:
+    build:
+      context: ./chatwoot
+      dockerfile: Dockerfile
     environment:
-      - RAILS_ENV=development
-      - NODE_ENV=development
-      - RAILS_LOG_TO_STDOUT=true
-      - REDIS_URL=redis://redis:6379
-      - SECRET_KEY_BASE=replace_with_your_secret_key
-      - FRONTEND_URL=http://localhost:3000
-      - INSTALLATION_ENV=docker
+      - RAILS_ENV=production
+      - NODE_ENV=production
       - SUPABASE_PROJECT_URL=${SUPABASE_PROJECT_URL}
       - SUPABASE_API_KEY=${SUPABASE_API_KEY}
       - SUPABASE_JWT_SECRET=${SUPABASE_JWT_SECRET}
-    depends_on:
-      - redis
-
-  rails:
-    <<: *base
-    command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
-    ports:
-      - 3000:3000
+      - SUPABASE_REALTIME_URL=${SUPABASE_REALTIME_URL}
+      - SUPABASE_REALTIME_KEY=${SUPABASE_REALTIME_KEY}
     volumes:
-      - ./:/app
-      - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
-      - cache:/app/tmp/cache
-    environment:
-      - PG_WAIT_TIMEOUT=60
-      - WEBPACKER_DEV_SERVER_HOST=webpack
-      - NODE_ENV=development
-      - RAILS_ENV=development
-
-  redis:
-    image: redis:alpine
-    restart: always
-    command: ["redis-server", "--appendonly", "yes"]
-    volumes:
-      - redis:/data
+      - ./chatwoot:/app
     ports:
-      - "6379:6379"
+      - "3000:3000"
+    command: ./bin/docker-entrypoint.sh
 
 volumes:
-  redis:
-  bundle:
-  node_modules:
-  packs:
-  cache: 
+  # Remove Redis volume
+  # redis_data: 

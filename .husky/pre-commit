@@ -1,5 +1,5 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
 # lint js and vue files
 npx --no-install lint-staged
@@ -9,3 +9,7 @@ git diff --name-only --cached | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs b
 
 # stage rubocop changes to files
 git diff --name-only --cached | xargs git add
+
+npm run lint
+npm run format
+npm run type-check

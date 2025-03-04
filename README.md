@@ -64,7 +64,7 @@ Other features include:
 - **Auto assignment**: Chatwoot intelligently assigns a ticket to the agents who have access to the inbox depending on their availability and load.
 - **Conversation continuity**: If the user has provided an email address through the chat widget, Chatwoot will send an email to the customer under the agent name so that the user can continue the conversation over the email.
 - **Multi-lingual support**: Chatwoot supports 10+ languages.
-- **Powerful API & Webhooks**: Extend the capability of the software using Chatwoot’s webhooks and APIs.
+- **Powerful API & Webhooks**: Extend the capability of the software using Chatwoot's webhooks and APIs.
 - **Integrations**: Chatwoot natively integrates with Slack right now. Manage your conversations in Slack without logging into the dashboard.
 
 ## Documentation
@@ -121,3 +121,100 @@ Thanks goes to all these [wonderful people](https://www.chatwoot.com/docs/contri
 
 
 *Chatwoot* &copy; 2017-2025, Chatwoot Inc - Released under the MIT License.
+
+# Chatwoot WebContainer
+
+Versão adaptada do Chatwoot para rodar em WebContainer, Supabase e Netlify.
+
+## Requisitos
+
+- Node.js 18+
+- npm ou yarn
+- Conta no Supabase
+- Conta no Netlify
+
+## Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/chatwoot-webcontainer.git
+cd chatwoot-webcontainer
+```
+
+2. Instale as dependências:
+```bash
+npm install
+# ou
+yarn install
+```
+
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env.local
+```
+
+4. Preencha as variáveis no arquivo `.env.local` com suas credenciais do Supabase.
+
+## Desenvolvimento
+
+Para iniciar o servidor de desenvolvimento:
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+O aplicativo estará disponível em `http://localhost:3000`.
+
+## Build
+
+Para criar uma build de produção:
+
+```bash
+npm run build
+# ou
+yarn build
+```
+
+## Deploy
+
+Para fazer deploy no Netlify:
+
+1. Conecte seu repositório ao Netlify
+2. Configure as variáveis de ambiente no Netlify
+3. O deploy será automático a cada push na branch principal
+
+## Estrutura do Projeto
+
+```
+chatwoot-webcontainer/
+├── app/                    # Componentes e páginas da aplicação
+├── components/            # Componentes reutilizáveis
+├── lib/                   # Utilitários e configurações
+├── public/               # Arquivos estáticos
+├── styles/               # Estilos globais
+└── types/                # Definições de tipos TypeScript
+```
+
+## Tecnologias Utilizadas
+
+- Next.js
+- TypeScript
+- Supabase
+- React Query
+- WebContainer
+- Tailwind CSS
+- Shadcn UI
+
+## Contribuindo
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.

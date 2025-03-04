@@ -1,23 +1,24 @@
 version: '3.8'
 
 services:
-  base:
+  api:
     build:
-      context: ./chatwoot
+      context: .
       dockerfile: Dockerfile
     environment:
-      - RAILS_ENV=production
       - NODE_ENV=production
+      - PORT=3000
       - SUPABASE_PROJECT_URL=${SUPABASE_PROJECT_URL}
       - SUPABASE_API_KEY=${SUPABASE_API_KEY}
       - SUPABASE_JWT_SECRET=${SUPABASE_JWT_SECRET}
       - SUPABASE_REALTIME_URL=${SUPABASE_REALTIME_URL}
       - SUPABASE_REALTIME_KEY=${SUPABASE_REALTIME_KEY}
-    volumes:
-      - ./chatwoot:/app
     ports:
       - "3000:3000"
-    command: ./bin/docker-entrypoint.sh
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm start
 
 volumes:
   # Remove Redis volume

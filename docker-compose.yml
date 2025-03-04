@@ -8,15 +8,14 @@ services:
       - RAILS_ENV=development
       - NODE_ENV=development
       - RAILS_LOG_TO_STDOUT=true
-      - POSTGRES_HOST=postgres
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY_BASE=replace_with_your_secret_key
       - FRONTEND_URL=http://localhost:3000
       - INSTALLATION_ENV=docker
+      - SUPABASE_PROJECT_URL=${SUPABASE_PROJECT_URL}
+      - SUPABASE_API_KEY=${SUPABASE_API_KEY}
+      - SUPABASE_JWT_SECRET=${SUPABASE_JWT_SECRET}
     depends_on:
-      - postgres
       - redis
 
   rails:
@@ -36,18 +35,6 @@ services:
       - NODE_ENV=development
       - RAILS_ENV=development
 
-  postgres:
-    image: postgres:12-alpine
-    restart: always
-    environment:
-      - POSTGRES_DB=chatwoot
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
   redis:
     image: redis:alpine
     restart: always
@@ -58,7 +45,6 @@ services:
       - "6379:6379"
 
 volumes:
-  postgres:
   redis:
   bundle:
   node_modules:

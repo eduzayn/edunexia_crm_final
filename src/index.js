@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
-import { createClient } from '@supabase/supabase-js';
 import { rateLimit } from 'express-rate-limit';
 import { errorHandler } from './middleware/errorHandler.js';
 import { authRoutes } from './routes/auth.js';
@@ -30,12 +29,6 @@ const limiter = rateLimit({
   max: 100 // limite de 100 requisições por janela
 });
 app.use(limiter);
-
-// Inicializar cliente Supabase
-const supabase = createClient(
-  process.env.SUPABASE_PROJECT_URL,
-  process.env.SUPABASE_API_KEY
-);
 
 // Rotas
 app.use('/api/auth', authRoutes);

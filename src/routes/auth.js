@@ -2,13 +2,9 @@ import express from 'express';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../config/supabase.js';
 
 const router = express.Router();
-const supabase = createClient(
-  process.env.SUPABASE_PROJECT_URL,
-  process.env.SUPABASE_API_KEY
-);
 
 // Schema de validação
 const loginSchema = z.object({

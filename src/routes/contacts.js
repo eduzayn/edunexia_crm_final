@@ -1,12 +1,8 @@
 import express from 'express';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../config/supabase.js';
 import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
-const supabase = createClient(
-  process.env.SUPABASE_PROJECT_URL,
-  process.env.SUPABASE_API_KEY
-);
 
 // Listar contatos
 router.get('/', authMiddleware, async (req, res, next) => {
